@@ -1,5 +1,11 @@
 ### Projeto Mobile com Navegação em React Native e UI com Native Paper
 
+### Integrantes
+
+# Julio Navarro
+
+# Ana Beatriz
+
 ## Índice
 
 - [1. Introdução](#1-introdução)
@@ -75,4 +81,5 @@ Veja algumas telas do projeto:
 [MIT](https://choosealicense.com/licenses/mit/)
 
 Apoie o software livre! 🐧
+
 # Topicos-Jogos-Frontend

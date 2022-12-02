@@ -1,8 +1,8 @@
-const BASE_API = "https://topicos-jogos.vercel.app";
+const BASE_API = "https://topicos-jogos-beckend.vercel.app";
 
 export default {
-  getJogos: async () => {
-    const req = await fetch(`${BASE_API}/jogos`, {
+  getJogo: async () => {
+    const req = await fetch(`${BASE_API}/api/jogos`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -12,8 +12,8 @@ export default {
     const json = await req.json();
     return json;
   },
-  getJogo: async (id) => {
-    const req = await fetch(`${BASE_API}/jogos/${id}`, {
+  getJogos: async (_id) => {
+    const req = await fetch(`${BASE_API}/api/jogos/${_id}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -23,21 +23,21 @@ export default {
     const json = await req.json();
     return json;
   },
-  incluiJogo: async (dadosjogo) => {
-    console.log(dadosjogo);
-    const req = await fetch(`${BASE_API}/jogos`, {
+  incluiJogos: async (dadosJogos) => {
+    console.log(dadosJogos);
+    const req = await fetch(`${BASE_API}/api/jogos`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(dadosjogo),
+      body: JSON.stringify(dadosJogos),
     });
     const json = await req.json();
     return json;
   },
-  alteraJogo: async (dadosJogo) => {
-    const req = await fetch(`${BASE_API}/jogos`, {
+  alteraJogos: async (dadosJogos) => {
+    const req = await fetch(`${BASE_API}/api/jogos`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -48,8 +48,8 @@ export default {
     const json = await req.json();
     return json;
   },
-  removeJogo: async (idjogo) => {
-    const req = await fetch(`${BASE_API}/jogos/${idjogo}`, {
+  removeJogos: async (idjogos) => {
+    const req = await fetch(`${BASE_API}/api/jogos/${idjogos}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

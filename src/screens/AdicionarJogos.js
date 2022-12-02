@@ -12,15 +12,15 @@ import ApiJogos from "../resources/ApiJogos";
 
 function AdicionaJogos({ navigation, theme, route }) {
   const { colors } = theme;
-  const hoje = new Date().toISOString().split("T")[0];
+
   const registroInicial = route.params
     ? route.params.Jogos
     : {
-        Nome: "",
-        Idade: "",
-        sexo: "",
-        telefone: "",
-        data_inicio_atividade: hoje,
+        nome_jogo: "",
+        valor_jogo: "",
+        Ano_De_Lançamento: "",
+        classificação_indicativa: "",
+        codigo_Jogo: "",
       };
   const [Jogos, setJogos] = useState(registroInicial);
   const [salvando, setSalvando] = useState(false);
@@ -40,7 +40,7 @@ function AdicionaJogos({ navigation, theme, route }) {
         ? alert(`✅Tudo Ok: Registro salvo com sucesso`)
         : Alert.alert("✅Tudo Ok", "Registro salvo com sucesso");
       setSalvando(false);
-      navigation.navigate("Inicio");
+      navigation.navigate("TelaInicial");
     }
   };
 
@@ -68,57 +68,63 @@ function AdicionaJogos({ navigation, theme, route }) {
           </Caption>
           <Text style={{ color: colors.text, paddingLeft: 8 }}>Nome</Text>
           <TextInput
-            name="Nome"
+            name="nome_jogo"
             style={{ margin: 8 }}
             keyboardType="default"
             placeholder="Nome do Jogos"
-            maxLength={14}
-            value={Jogos.nome}
-            onChangeText={(text) => setJogos({ ...Jogos, nome: text })}
-          />
-          <Text style={{ color: colors.text, paddingLeft: 8 }}>Idade</Text>
-          <TextInput
-            name="Idade"
-            style={{ margin: 8 }}
-            keyboardType="default"
-            placeholder="Digite sua idade"
-            maxLength={100}
-            value={Jogos.razao_social}
-            onChangeText={(text) => setJogos({ ...Jogos, Idade: text })}
-          />
-          <Text style={{ color: colors.text, paddingLeft: 8 }}>Sexo</Text>
-          <TextInput
-            name="Sexo"
-            style={{ margin: 8 }}
-            keyboardType="default"
-            placeholder="Sexo (opcional)"
             maxLength={50}
-            value={Jogos.nome_fantasia}
-            onChangeText={(text) => setJogos({ ...Jogos, Sexo: text })}
+            value={Jogos.nome_jogo}
+            onChangeText={(text) => setJogos({ ...Jogos, nome_jogo: text })}
           />
-          <Text style={{ color: colors.text, paddingLeft: 8 }}>Telefone</Text>
+          <Text style={{ color: colors.text, paddingLeft: 8 }}>Preço</Text>
           <TextInput
-            name="Telefone"
+            name="valor_jogo"
             style={{ margin: 8 }}
             keyboardType="number-pad"
-            placeholder="Seu Telefone"
-            maxLength={7}
-            value={Jogos.cnae_fiscal}
-            onChangeText={(text) => setUsuarios({ ...Jogos, Telefone: text })}
+            placeholder="Digite o preço"
+            maxLength={100}
+            value={Jogos.valor_jogo}
+            onChangeText={(text) => setJogos({ ...Jogos, valor_jogo: text })}
           />
           <Text style={{ color: colors.text, paddingLeft: 8 }}>
-            Início da Atividade
+            Ano De Lançamento
           </Text>
           <TextInput
-            name="data_inicio_atividade"
+            name="Ano de Lançamento"
             style={{ margin: 8 }}
             keyboardType="number-pad"
-            placeholder="AAAA-MM-DD"
-            maxLength={10}
-            value={Jogos.data_inicio_atividade}
+            placeholder="Digite o ano de lançamento"
+            maxLength={50}
+            value={Jogos.ano_de_lançamento}
             onChangeText={(text) =>
-              setJogos({ ...Jogos, data_inicio_atividade: text })
+              setJogos({ ...Jogos, Ano_De_Lançamento: text })
             }
+          />
+          <Text style={{ color: colors.text, paddingLeft: 8 }}>
+            Classificação Indicativa
+          </Text>
+          <TextInput
+            name="Classificação Indicativa"
+            style={{ margin: 8 }}
+            keyboardType="number-pad"
+            placeholder="Digite a classificação indicativa"
+            maxLength={7}
+            value={Jogos.classificação_indicativa}
+            onChangeText={(text) =>
+              setJogos({ ...Jogos, classificação_indicativa: text })
+            }
+          />
+          <Text style={{ color: colors.text, paddingLeft: 8 }}>
+            Código do produto
+          </Text>
+          <TextInput
+            name="Código do jogo"
+            style={{ margin: 8 }}
+            keyboardType="number-pad"
+            placeholder="Digite o codigo do jogo"
+            maxLength={7}
+            value={Jogos.codigo_Jogo}
+            onChangeText={(text) => setJogos({ ...Jogos, codigo_Jogo: text })}
           />
         </View>
         <FAB

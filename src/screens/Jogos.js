@@ -16,31 +16,31 @@ import {
   Avatar,
 } from "react-native-paper";
 import Header from "../components/Header";
-import ListaPrestador from "./ListaPrestador";
+import ListaJogo from "./ListaJogo";
 import ApiJogos from "../resources/ApiJogos";
 
-function ListaJogos({ navigation, theme }) {
-  const [Jogos, setJogos] = useState([]);
+function Jogos({ navigation, theme }) {
+  const [Jogo, setJogo] = useState([]);
   const [carregando, setCarregando] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const { colors } = theme;
 
   useEffect(() => {
-    getJogos();
+    getJogo();
   }, []);
 
-  const getJogos = async () => {
+  const getJogo = async () => {
     setCarregando(true);
-    let retorno = await ApiJogos.getJogos();
+    let retorno = await ApiJogos.getJogo();
     retorno.ok === 0
       ? Alert.alert("Erro!", "Não foi possível obter a lista!")
-      : setJogos(retorno);
+      : setJogo(retorno);
     setCarregando(false);
   };
   const onRefresh = React.useCallback(async () => {
     setRefreshing(true);
     try {
-      await getJogos();
+      await getJogo();
     } catch (error) {
       console.error(error);
     }
@@ -66,7 +66,7 @@ function ListaJogos({ navigation, theme }) {
         <List.Subheader>
           <Avatar.Icon size={24} icon="refresh" /> Para atualizar os Jogos
         </List.Subheader>
-        {Jogos.length === 0 && !carregando ? (
+        {Jogo.length === 0 && !carregando ? (
           <View>
             <Text style={{ fontSize: 20 }}>
               Ainda não há nenhum prestador de serviço cadastrado.
@@ -74,13 +74,13 @@ function ListaJogos({ navigation, theme }) {
           </View>
         ) : (
           <FlatList
-            data={Jogos}
+            data={Jogo}
             keyExtractor={(item) => item._id.toString()}
             refreshControl={
               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }
             renderItem={({ item }) => (
-              <ListaPrestador data={item} navigation={navigation} />
+              <ListaJogo data={item} navigation={navigation} />
             )}
           />
         )}
@@ -105,4 +105,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withTheme(ListaJogos);
+export default withTheme(Jogos);
